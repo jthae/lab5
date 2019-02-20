@@ -46,6 +46,14 @@ public class Calculator
         {
         	return a/2;
         }
+        else if (command.equalsIgnoreCase("increment"))
+        {
+        	return a + 1;
+        }
+        else if (command.equalsIgnoreCase("decrement"))
+        {
+        	return a - 1;
+        }
         else
         {
         	throw new CalculatorException("Illegal Command");
@@ -85,6 +93,34 @@ public class Calculator
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
         // TODO: complete this...
+    	int a = Integer.parseInt(tokens[0]);
+    	int b = Integer.parseInt(tokens[2]);
+    	
+    	String operator = tokens[1];
+    	
+    	if (operator.equalsIgnoreCase("+"))
+    	{
+    		return a + b;
+    	}
+    	else if (operator.equalsIgnoreCase("-"))
+    	{
+    		return a - b;
+    	}
+    	else if (operator.equalsIgnoreCase("/"))
+    	{
+    		if (b != 0)
+    		{
+    			return a / b;
+    		}
+    		else 
+    		{
+    			throw new ArithmeticException();
+    		}
+    	}
+    	else
+    	{
+    		throw new CalculatorException("Illegal Command");
+    	}
     }
 
     /**
@@ -174,6 +210,34 @@ public class Calculator
         // TODO: complete this...
         // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
         // method will catch those exceptions and respond accordingly.
+    	String[] tokens = input.split(" ");
     	
+    	try
+    	{
+    		int result = execute(tokens);
+    		
+    		switch(tokens.length)
+    		{
+    			case 1: return "quit";
+    			case 2: case 3: default: return String.format("The result is: %d", result);
+    		}
+    	}
+    	catch (ArithmeticException e)
+    	{
+    		return "Attempted to divide by 0. Please try again.";
+    	}
+    	catch (NumberFormatException e)
+    	{
+    		return "Input number cannot be parsed to an int. Please try again.";
+    	}
+    	catch (CalculatorException e)
+    	{
+    		return String.format("Calculator Exception, message is: %s", e.getMessage());
+    	}   
+    	catch (Exception e)
+    	{
+    		return "Exception occurred";
+    	}
     }
 }
+
