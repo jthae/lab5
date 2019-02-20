@@ -27,7 +27,6 @@ public class CalculatorTest {
      */
     public void calculateTwoTokensTestValidHalve() throws AssertException
     {
-        // TODO: complete this test...
     	try
     	{
     		int result = Calculator.calculateTwoTokens(new String[] {"halve", "5"});
@@ -169,7 +168,6 @@ public class CalculatorTest {
      */
     public void calculateThreeTokensTestInvalidCommand() throws AssertException
     {
-        // TODO: complete this test...
     	try
     	{
     		Calculator.calculateThreeTokens(new String[] {"4", "yeet", "3"});
@@ -312,8 +310,8 @@ public class CalculatorTest {
      */
     public void parseAndExecuteTestDivideByZero() throws AssertException
     {
-        // TODO: complete this test...
-    	
+    	String result = Calculator.parseAndExecute("4 / 0");
+    	Assert.assertEquals("Attempted to divide by 0. Please try again.", result);	
     }
 
     /**
@@ -321,7 +319,8 @@ public class CalculatorTest {
      */
     public void parseAndExecuteTestInvalidNumber() throws AssertException
     {
-        // TODO: complete this test...
+        String result = Calculator.parseAndExecute("bro + 2");
+        Assert.assertEquals("Input number cannot be parsed to an int. Please try again.", result);
     }
 
     /**
@@ -338,6 +337,7 @@ public class CalculatorTest {
      */
     public void parseAndExecuteTestInvalidTokenLength() throws AssertException
     {
-        // TODO: complete this test...
+    	String result = Calculator.parseAndExecute("1 + 2 + 3");
+    	Assert.assertEquals("Calculator Exception, message is: Illegal Token Length", result);
     }
 }
