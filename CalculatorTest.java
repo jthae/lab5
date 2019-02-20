@@ -83,7 +83,15 @@ public class CalculatorTest {
      */
     public void calculateThreeTokensTestValidAdd() throws AssertException
     {
-        // TODO: complete this test...
+    	try
+    	{
+    		int result = Calculator.calculateThreeTokens(new String[] {"3", "+", "4"});
+    		Assert.assertEquals(7, result);
+    	}
+    	catch (Exception e)
+    	{
+    		Assert.fail("Legal expression threw an exception: " + e.getMessage());
+    	}
     }
 
     /**
@@ -91,7 +99,15 @@ public class CalculatorTest {
      */
     public void calculateThreeTokensTestValidSubtract() throws AssertException
     {
-        // TODO: complete this test...
+    	try
+    	{
+    		int result = Calculator.calculateThreeTokens(new String[] {"3", "-", "1"});
+    		Assert.assertEquals(2, result);
+    	}
+    	catch (Exception e) 
+    	{
+    		Assert.fail("Legal expression threw an exception: " + e.getMessage());
+    	}
     }
 
     /**
@@ -99,7 +115,15 @@ public class CalculatorTest {
      */
     public void calculateThreeTokensTestValidDivide() throws AssertException
     {
-        // TODO: complete this test...
+    	try
+    	{
+    		int result = Calculator.calculateThreeTokens(new String[] {"6", "/", "2"});
+    		Assert.assertEquals(3, result);
+    	}
+    	catch (Exception e)
+    	{
+    		Assert.fail("Legal expression threw an exception: " + e.getMessage());
+    	}
     }
 
     /**
@@ -146,6 +170,15 @@ public class CalculatorTest {
     public void calculateThreeTokensTestInvalidCommand() throws AssertException
     {
         // TODO: complete this test...
+    	try
+    	{
+    		Calculator.calculateThreeTokens(new String[] {"4", "yeet", "3"});
+    		Assert.fail("Illegal expression, did not throw an exception");
+    	}
+    	catch (Exception e)
+    	{
+    		Assert.fail("Incorrect command usage");
+    	}
     }
 
     /**
@@ -154,6 +187,15 @@ public class CalculatorTest {
     public void executeTestValidQuit() throws AssertException
     {
         // TODO: complete this test...
+    	try
+    	{
+    		int result = Calculator.execute(new String[] {"quit"});
+    		Assert.assertEquals(Integer.MIN_VALUE, result);
+    	}
+    	catch (Exception e)
+    	{
+    		Assert.fail("Legal expression threw an exception: " + e.getMessage());
+    	}
     }
 
     /**
@@ -178,6 +220,15 @@ public class CalculatorTest {
     public void executeTestValidThreeTokens() throws AssertException
     {
         // TODO: complete this test...
+    	try
+    	{
+    		int result = Calculator.execute(new String[] {"3", "+", "2"});
+    		Assert.assertEquals(5, result);
+    	}
+    	catch (Exception e)
+    	{
+    		Assert.fail("Legal expression threw an Exception: " + e.getMessage());
+    	}
     }
 
     /**
@@ -208,10 +259,34 @@ public class CalculatorTest {
     public void executeTestInvalidTokenLength() throws AssertException
     {
         // Token length is 0:
-        // TODO: complete this test...
+    	try
+    	{
+    		Calculator.execute(new String[] {""});
+    		Assert.fail("Illegal expression, did not throw an exception");
+    	}
+    	catch (CalculatorException e)
+    	{
+    		Assert.assertEquals("Illegal Command", e.getMessage());
+    	}
+    	catch (Exception e)
+    	{
+    		Assert.fail("Unexpected Exception (not CalculatorException) caught");
+    	}
 
         // Token length is > 3:
-        // TODO: complete this test...
+    	try
+    	{
+    		Calculator.execute(new String[] {"1", "+", "2", "+", "3"});
+    		Assert.fail("Illegal expression, did not throw an exception");
+    	}
+    	catch (CalculatorException e)
+    	{
+    		Assert.assertEquals("Illegal Token Length", e.getMessage());
+    	}
+    	catch (Exception e)
+    	{
+    		Assert.fail("Unexpected exception (not CalculatorException) caught");
+    	}
     }
 
     /**
@@ -238,6 +313,7 @@ public class CalculatorTest {
     public void parseAndExecuteTestDivideByZero() throws AssertException
     {
         // TODO: complete this test...
+    	
     }
 
     /**
